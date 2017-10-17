@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="FPlayground for hosting data">
+    <meta name="keywords" content="">
+    <meta name="author" content="David Estes">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>Default title...</title>
+    {% endif %}
+
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{{ url_for('index') }}">Home</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <!-- TODO: put real pages here -->
+            <li><a href="{{ url_for('TODO page') }}">Header one</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                   aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="{{ url_for('TODO page') }}">Dropdown one</a></li>
+                </ul>
+            </li>
+            </div>
+        </ul>
+    </div>
+</nav>
+<hr>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul>
+    {% for message in messages %}
+    <li>{{ message }} </li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+<div class="container-fluid">
+    {% block content %}{% endblock %}
+</div>
+</body>
+</html>
